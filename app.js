@@ -11,6 +11,9 @@ let previousGuesses = [];
 let numGuesses = 1;
 let playGame = true;
 let remainingTime = 30;
+const timer = document.getElementById('timer');
+
+
 
 if (playGame) {
   subt.addEventListener('click', function (e) {
@@ -94,10 +97,26 @@ function newGame() {
     userInput.removeAttribute('disabled');
     startOver.removeChild(p);
     playGame = true;
+  
+    clearInterval(timerInterval); 
+    remainingTime = 30; 
+    timer.textContent = remainingTime;
+    timerInterval = setInterval(setIntervalTimer, 1000);
   })
 }
 //Allow to restart game with restart button
 //Change DIV to a form so it can accept the enter key
+
+function setIntervalTimer() {
+  remainingTime--;
+  timer.textContent = remainingTime;
+  if (remainingTime === 0) { 
+    endGame(); 
+    clearInterval(timerInterval); 
+  }
+}
+
+let timerInterval = setInterval(setIntervalTimer, 1000);
 
 //NOTES:
 //NaN != NaN
