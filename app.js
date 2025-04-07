@@ -111,6 +111,7 @@ function setIntervalTimer() {
   remainingTime--;
   timer.textContent = remainingTime;
   if (remainingTime === 0) { 
+    displayMessage('Time is over!')
     endGame(); 
     clearInterval(timerInterval); 
   }
